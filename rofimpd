@@ -13,7 +13,7 @@ else
 fi
 
 # modes
-modes="current playlist\nplaylists\nshuffle\ntracks\nalbums\nartists"
+modes="current playlist\nplaylists\nshuffle\ntracks\nalbums\nartists\ngenres"
 mode=$(echo -e "$modes" | launcher "mpd: ")
 
 # tracks in current playlist
@@ -72,5 +72,20 @@ elif [[ "$mode" == "artists" ]]; then
 
   mpc clear
   mpc find artist "$artist" album "$album" | mpc add
+  mpc play
+
+# list of genres
+elif [[ "$mode" == "genres" ]]; then
+
+  # list genres
+  genre="$(mpc list genre | sort -f | launcher "choose a genre: ")"
+  [ ! ${genre} ] && exit
+
+  # list albums from chosen genre
+  album="$(mpc list album genre "${genre}" | launcher "choose album: ")"
+  [ ! ${album} ] && exit
+
+  mpc clear
+  mpc find genre "$genre" album "$album" | mpc add
   mpc play
 fi
