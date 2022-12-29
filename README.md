@@ -10,7 +10,7 @@ funcionality for:
 
 ## screenshot
 
-![](https://rj1.localghost.org/img/rofimpd-sshot.png)
+![](https://rj1.su/img/rofimpd-sshot.png)
 
 ## alternatives
 https://github.com/JakeStanger/Rofi_MPD  
